@@ -20,4 +20,4 @@ Compile:
 
 Run:
 
-    $ ./bin/simple_http --port=18080
+    $ ./bin/simple_http --port=[PORT]
