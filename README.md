@@ -12,10 +12,11 @@ Very simple ADA Http/socket server, so I can explore what makes a web server tic
 It just answers something to a HTTP/1.1 request.
 
 ## How to use
+You'll need Ada, GNAT & gprbuild
 Compile:
 
-    gprbuild -Pada_socketsrv
+    $ gprbuild -Pada_socketsrv
 
 Run:
 
-     ./bin/simple_http --port=18080
+    $ ./bin/simple_http --port=18080
