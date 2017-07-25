@@ -9,7 +9,7 @@ Very simple ADA Http/socket server, so I can explore what makes a web server tic
  * Interest in learning the language (compiler, data types, concurrency, strong typing)
 
 ## Current state
-It just answers something to a HTTP/1.1 request.
+It just answers something to a HTTP/1.1 request, one at a time.
 
 ## How to use
 You'll need Ada, GNAT & gprbuild.
