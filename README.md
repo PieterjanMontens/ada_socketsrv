@@ -12,7 +12,8 @@ Very simple ADA Http/socket server, so I can explore what makes a web server tic
 It just answers something to a HTTP/1.1 request.
 
 ## How to use
-You'll need Ada, GNAT & gprbuild
+You'll need Ada, GNAT & gprbuild.
+
 Compile:
 
     $ gprbuild -Pada_socketsrv
