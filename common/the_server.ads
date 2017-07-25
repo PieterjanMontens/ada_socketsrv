@@ -3,8 +3,6 @@ with Ada.Streams;           use type Ada.Streams.Stream_Element_Count;
 with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
 
 package the_server is
-    --subtype Port_Range is Natural range 1 .. 65535;
-
     Server  : Socket_Type;
     Socket  : Socket_Type;
 
@@ -22,10 +20,6 @@ package the_server is
     Data    : Ada.Streams.Stream_Element_Array (1 .. 512);
 
     HTTP_Request: Unbounded_String;
-
-    CR : String := "" & ASCII.CR;
-
-    unused : Integer;
 
     procedure start;
     procedure help;
