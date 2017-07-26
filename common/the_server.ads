@@ -12,7 +12,7 @@ package the_server is
     Address : Sock_Addr_Type;
     Client  : Sock_Addr_Type;
     Channel    : Stream_Access;
-    Port    : Port_Type;
+    Port    : Port_Range;
     Errors  : Natural := 0;
 
     CRLF    : String := (1 => ASCII.CR ,2 => ASCII.LF);
