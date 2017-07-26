@@ -1,7 +1,7 @@
 # ada_socketsrv
 *work in progress*
 
-Very simple ADA Http/socket server, so I can explore what makes a web server tick.
+Very simple ADA Http/socket server, a nice exercise to get to know a new language.
 
 ## Why Ada ?
  * Robustness
@@ -9,7 +9,7 @@ Very simple ADA Http/socket server, so I can explore what makes a web server tic
  * Interest in learning the language (compiler, data types, concurrency, strong typing)
 
 ## Current state
-It just answers something to a HTTP/1.1 request, one at a time.
+It just answers something to a HTTP/1.1 request, one at a time. Still working on a parser.
 
 ## How to use
 You'll need Ada, GNAT & gprbuild.

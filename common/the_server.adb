@@ -9,6 +9,8 @@ with Ada.Strings.Unbounded;
 
 with Ada.Streams; use type Ada.Streams.Stream_Element_Count;
 
+with the_parser;
+
 package body the_server is
 
     procedure start is

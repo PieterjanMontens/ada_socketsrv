@@ -1,8 +1,11 @@
 with GNAT.Sockets;          use GNAT.Sockets;
 with Ada.Streams;           use type Ada.Streams.Stream_Element_Count;
 with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
+with the_parser;
 
 package the_server is
+    subtype Port_Range is Port_Type range 0 .. 65535;
+
     Server  : Socket_Type;
     Socket  : Socket_Type;
 
