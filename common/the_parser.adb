@@ -6,7 +6,7 @@ package body the_parser is
         -- Probably some kind of byte-for-byte interface & state machine.
 
         Headers(1) := (header => UB.To_Unbounded_String("host")
-                         ,value  => UB.To_Unbounded_String("my_host") );
+                      ,value  => UB.To_Unbounded_String("my_host") );
 
         Request := (method  => Get
                    ,path    => parse_path(Data)
