@@ -1,9 +1,20 @@
-with GNAT.Sockets;          use GNAT.Sockets;
-with Ada.Streams;           use type Ada.Streams.Stream_Element_Count;
-with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
+with Ada.Text_IO;
+with Ada.Text_IO.Unbounded_IO;
+with Ada.Integer_Text_IO;
+with Ada.IO_Exceptions;
+with Ada.Command_Line;
 with the_parser;
+with Ada.Strings.Unbounded; 
+
+-- packages inserted into namespace
+with GNAT.Sockets;          use GNAT.Sockets;
+with GNAT.Command_Line;     use GNAT.Command_Line;
+with Ada.Streams;           use type Ada.Streams.Stream_Element_Count;
+
 
 package the_server is
+    package UB renames Ada.Strings.Unbounded;
+
     subtype Port_Range is Port_Type range 0 .. 65535;
 
     Server  : Socket_Type;
@@ -22,7 +33,7 @@ package the_server is
     Offset  : Ada.Streams.Stream_Element_Count;
     Data    : Ada.Streams.Stream_Element_Array (1 .. 512);
 
-    HTTP_Request: Unbounded_String;
+    HTTP_Request: UB.Unbounded_String;
 
     procedure start;
     procedure help;

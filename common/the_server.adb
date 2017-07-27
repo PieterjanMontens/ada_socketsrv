@@ -1,16 +1,3 @@
-with Ada.Text_IO;
-with Ada.Text_IO.Unbounded_IO;
-with Ada.Integer_Text_IO;
-with Ada.IO_Exceptions;
-with GNAT.Sockets;          use GNAT.Sockets;
-with GNAT.Command_Line;     use GNAT.Command_Line;
-with Ada.Command_Line;
-with Ada.Strings.Unbounded;
-
-with Ada.Streams; use type Ada.Streams.Stream_Element_Count;
-
-with the_parser;
-
 package body the_server is
 
     procedure start is
@@ -54,7 +41,7 @@ package body the_server is
             begin
                 Receive_Socket(Socket, Data, Offset);
                 for I in 1 .. Offset loop
-                    Append(HTTP_Request, Character'Val(Data(I)));
+                    UB.Append(HTTP_Request, Character'Val(Data(I)));
                 end loop;
                 Ada.Text_IO.Put_Line("Client " & GNAT.Sockets.Image (Client) & ":");
                 Ada.Text_IO.Unbounded_IO.Put_Line(HTTP_Request);
