@@ -40,6 +40,8 @@ package body the_server is
             Channel := Stream(Socket);
             begin
                 Receive_Socket(Socket, Data, Offset);
+                Last := 1;
+                test_out := the_parser.parse_requestLine(Data,Last);
                 for I in 1 .. Offset loop
                     UB.Append(HTTP_Request, Character'Val(Data(I)));
                 end loop;
