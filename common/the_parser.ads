@@ -44,7 +44,6 @@ package the_parser is
                            ;Index  : in out Ada.Streams.Stream_Element_Offset
                            ;Target : out Request_Path);
 
-    -- Because ADA seems not to support settings attributes for user-defined types
     function image(Req:Request_Record) return String;
 
 end the_parser;
