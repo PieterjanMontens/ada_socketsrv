@@ -1,6 +1,7 @@
 with Ada.Text_IO;
-with Ada.Streams; 
+with Ada.Streams; use type Ada.Streams.Stream_Element; 
 with Ada.Strings.Unbounded; 
+with Ada.Strings.Fixed;
 
 package the_parser is
     package UB renames Ada.Strings.Unbounded;
@@ -27,15 +28,23 @@ package the_parser is
 
     Request : Request_record;
     Method  : Http_Method;
+    Target  : Request_Path;
     Headers : Http_Headers;
-    Char    : Character;
+
+    procedure parse_request(Data    : in Ada.Streams.Stream_Element_Array
+                           ;Index   : in out Ada.Streams.Stream_Element_Offset
+                           ;Request : out Request_Record);
     
-    function parse_path(Data:Ada.Streams.Stream_Element_Array) return Request_Path;
 
-    function parse_request(Data:Ada.Streams.Stream_Element_Array) return Request_Record;
+    procedure method_obtain(Data   : Ada.Streams.Stream_Element_Array
+                           ;Index  : in out Ada.Streams.Stream_Element_Offset
+                           ;Method : out Http_Method);
 
-    --function parse_method(Data:Ada.Streams.Stream_Element_Array) return Http_Method;
+    procedure target_obtain(Data   : Ada.Streams.Stream_Element_Array
+                           ;Index  : in out Ada.Streams.Stream_Element_Offset
+                           ;Target : out Request_Path);
 
-    function parse_requestLine(Data:Ada.Streams.Stream_Element_Array; Index:in out Ada.Streams.Stream_Element_Offset) return Http_Method;
+    -- Because ADA seems not to support settings attributes for user-defined types
+    function image(Req:Request_Record) return String;
 
 end the_parser;

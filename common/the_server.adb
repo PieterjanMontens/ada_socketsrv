@@ -1,6 +1,7 @@
 package body the_server is
 
     procedure start is
+    TimeOut : Duration := 10.0;
   
     begin
         loop  
@@ -26,26 +27,26 @@ package body the_server is
         Address.Port := Port;
 
         Create_Socket(Server);
-        Set_Socket_Option(Server
-                         ,Socket_Level
-                         ,(Reuse_Address, Enabled => True));
-        Set_Socket_Option(Server
-                         ,Socket_Level
-                         ,(Receive_Timeout, Timeout => 10.0));
+        Set_Socket_Option(Server ,Socket_Level ,(Reuse_Address, Enabled => True));
+        Set_Socket_Option(Server ,Socket_Level ,(Receive_Timeout, Timeout => TimeOut));
+
         Bind_Socket(Server,Address);
         Listen_Socket(Server);
         loop
             Accept_Socket(Server, Socket, Address);
-            Ada.Text_IO.Put_Line ("Client connected from " & GNAT.Sockets.Image (Client));
+            Ada.Text_IO.Put_Line ("Client " & GNAT.Sockets.Image (Client));
             Channel := Stream(Socket);
             begin
                 Receive_Socket(Socket, Data, Offset);
-                Last := 1;
-                test_out := the_parser.parse_requestLine(Data,Last);
+                Index := Data'First;
+                the_parser.parse_request(Data,Index,Request);
+
+                Ada.Text_IO.Put_Line(the_parser.image(Request));
+
+                -- Debugging:
                 for I in 1 .. Offset loop
                     UB.Append(HTTP_Request, Character'Val(Data(I)));
                 end loop;
-                Ada.Text_IO.Put_Line("Client " & GNAT.Sockets.Image (Client) & ":");
                 Ada.Text_IO.Unbounded_IO.Put_Line(HTTP_Request);
                 
                 String'Write(Channel, 
@@ -54,6 +55,7 @@ package body the_server is
                      Send & 
                      "something" & Send 
                   );
+
             exception
                 when Ada.IO_Exceptions.End_Error=>
                     null;

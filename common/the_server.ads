@@ -35,8 +35,8 @@ package the_server is
 
     HTTP_Request: UB.Unbounded_String;
 
-    Last     : Ada.Streams.Stream_Element_Offset;
-    test_out : the_parser.Http_Method;
+    Index     : Ada.Streams.Stream_Element_Offset;
+    Request : the_parser.Request_Record;
 
     procedure start;
     procedure help;
